@@ -1,11 +1,14 @@
+// middleware/jwt.js
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const secretKey = process.env.JWT_SECRET || "akv0779_paramesh";
 
+// Function to generate a token
 exports.generateToken = (payload) => {
-  return jwt.sign(payload, secretKey, { expiresIn: "1h" });
+  return jwt.sign(payload, secretKey, { expiresIn: "1h" }); // 1-hour expiration
 };
 
+// Function to verify a token
 exports.verifyToken = (req, res, next) => {
   const token = req.headers["authorization"];
   if (!token) {

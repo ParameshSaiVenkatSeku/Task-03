@@ -79,12 +79,19 @@ export class LoginComponent {
         })
         .subscribe(
           (response: any) => {
-            alert('User Log In Succesful!');
+            alert('User Log In Successful!');
             console.log(response);
+            this.router.navigate(['/register']);
+
+            // Save the token to sessionStorage
+            sessionStorage.setItem('jwtToken', response.token);
+
+            // Optionally, redirect to dashboard or another page after successful login
             // this.router.navigate(['/dashboard']);
           },
           (error) => {
             console.error('Error:', error);
+            alert('Login failed. Please check your credentials.');
           }
         );
     } else {

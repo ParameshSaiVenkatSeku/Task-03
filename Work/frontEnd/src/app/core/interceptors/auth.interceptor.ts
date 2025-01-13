@@ -22,6 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.authService.getToken();
+    console.log('skdfnmkjfda');
 
     // If token exists, add Authorization header
     if (token) {
@@ -35,7 +36,6 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
-          // Token expired or unauthorized access, logout and redirect to login
           this.authService.logout();
           this.router.navigate(['/login']);
         }

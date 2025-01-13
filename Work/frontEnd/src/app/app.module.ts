@@ -7,8 +7,9 @@ import { LoginComponent } from './features/login/components/login/login.componen
 import { RegisterComponent } from './features/register/components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
   imports: [
@@ -19,7 +20,13 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor, // Use the AuthInterceptor
+      multi: true, // Ensure that multiple interceptors can be used
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
