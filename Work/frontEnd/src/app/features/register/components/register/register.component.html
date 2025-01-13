@@ -1,1 +1,114 @@
-<p>register works!</p>
+<div class="container-fluid vh-100 d-flex align-items-center">
+  <div
+    class="position-absolute top-0 start-0 m-3 d-flex justify-content-between w-100"
+  >
+    <div>
+      <img
+        src="assets/icons/Akrivia Logo.png"
+        alt="Logo"
+        style="height: 30px"
+      />
+    </div>
+  </div>
+
+  <div
+    class="row w-75 mx-auto shadow-lg rounded overflow-hidden"
+    style="max-height: 90vh"
+  >
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center bg-light p-4"
+    >
+      <div class="w-100" style="max-width: 350px">
+        <h1 class="text-primary text-left fw-bold mb-3" style="font-size: 24px">
+          Sign Up
+        </h1>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              formControlName="firstName"
+              class="form-control"
+              placeholder="Enter your first name"
+              (blur)="validateFieldOnBlur('firstName')"
+              (input)="clearErrorOnTyping('firstName')"
+            />
+            <div *ngIf="errorMessages['firstName']" class="text-danger small">
+              {{ errorMessages["firstName"] }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              formControlName="lastName"
+              class="form-control"
+              placeholder="Enter your last name"
+              (blur)="validateFieldOnBlur('lastName')"
+              (input)="clearErrorOnTyping('lastName')"
+            />
+            <div *ngIf="errorMessages['lastName']" class="text-danger small">
+              {{ errorMessages["lastName"] }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              placeholder="Enter your email"
+              (blur)="validateFieldOnBlur('email')"
+              (input)="clearErrorOnTyping('email')"
+            />
+            <div *ngIf="errorMessages['email']" class="text-danger small">
+              {{ errorMessages["email"] }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Enter your password"
+              (blur)="validateFieldOnBlur('password')"
+              (input)="clearErrorOnTyping('password')"
+            />
+            <div *ngIf="errorMessages['password']" class="text-danger small">
+              {{ errorMessages["password"] }}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!registerForm.valid"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        <p class="text-center mt-3" style="font-size: 14px">
+          Already have an account?
+          <a routerLink="/login" class="text-primary fw-bold">Log In</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center align-items-center p-0">
+      <img
+        src="assets/images/register-pic.jpg"
+        alt="Register Preview"
+        class="img-fluid w-100 h-100"
+        style="object-fit: cover; max-height: 100%"
+      />
+    </div>
+  </div>
+</div>

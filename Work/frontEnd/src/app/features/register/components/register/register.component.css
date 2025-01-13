@@ -1,0 +1,14 @@
+.input-group-text img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.bg-light {
+  border-radius: 10px;
+}
+
+.btn-primary:hover {
+  background-color: blueviolet !important;
+  border-color: blueviolet !important;
+}

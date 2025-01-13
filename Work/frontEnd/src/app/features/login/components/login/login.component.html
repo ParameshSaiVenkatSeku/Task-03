@@ -1,0 +1,87 @@
+<div class="container-fluid vh-100 d-flex align-items-center">
+  <div
+    class="position-absolute top-0 start-0 m-3 d-flex justify-content-between w-100"
+  >
+    <div>
+      <img
+        src="assets/icons/Akrivia Logo.png"
+        alt="Logo"
+        style="height: 30px"
+      />
+    </div>
+  </div>
+
+  <div
+    class="row w-75 mx-auto shadow-lg rounded overflow-hidden"
+    style="max-height: 90vh"
+  >
+    <div
+      class="col-md-6 d-flex justify-content-center align-items-center bg-light p-4"
+    >
+      <div class="w-100" style="max-width: 350px">
+        <h1 class="text-primary text-left fw-bold mb-3" style="font-size: 24px">
+          Log In
+        </h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="emailOrUsername" class="form-label"
+              >Username / Email</label
+            >
+            <input
+              type="text"
+              id="emailOrUsername"
+              formControlName="emailOrUsername"
+              class="form-control"
+              placeholder="Enter your email or username"
+              (blur)="validateFieldOnBlur('emailOrUsername')"
+              (input)="clearErrorOnTyping('emailOrUsername')"
+            />
+            <div
+              *ngIf="errorMessages['emailOrUsername']"
+              class="text-danger small"
+            >
+              {{ errorMessages["emailOrUsername"] }}
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Enter your password"
+              (blur)="validateFieldOnBlur('password')"
+              (input)="clearErrorOnTyping('password')"
+            />
+            <div *ngIf="errorMessages['password']" class="text-danger small">
+              {{ errorMessages["password"] }}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="btn btn-primary w-100"
+            [disabled]="!loginForm.valid"
+          >
+            Log In
+          </button>
+        </form>
+
+        <p class="text-center mt-3" style="font-size: 14px">
+          Don’t have an account?
+          <a routerLink="/register" class="text-primary fw-bold">Sign Up</a>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center align-items-center p-0">
+      <img
+        src="assets/images/login-pic.jpg"
+        alt="Login Preview"
+        class="img-fluid w-100 h-100"
+        style="object-fit: cover; max-height: 100%"
+      />
+    </div>
+  </div>
+</div>
